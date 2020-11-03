@@ -6,7 +6,7 @@ import storage from 'redux-persist/lib/storage' // defaults to localStorage for 
 import RootReducer from './reducers'
 
 const persistConfig = {
-  key: 'python-web-root',
+  key: 'exp-date-root',
   storage,
   whitelist: ['courseware', 'tabs'],
 }
