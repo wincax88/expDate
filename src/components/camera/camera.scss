@@ -1,0 +1,9 @@
+.camera-container {
+  width: 100%;
+  height: 100%;
+  background: #000;
+}
+
+.react-html5-camera-photo-fullscreen > video {
+  object-fit: fill;
+}

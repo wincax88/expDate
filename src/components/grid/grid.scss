@@ -1,0 +1,19 @@
+.grid-container {
+  position: absolute;
+  display: grid;
+  flex-wrap: wrap;
+  grid-template-rows: repeat(3, 1fr);
+  grid-template-columns: repeat(3, 1fr);
+  width: 100%;
+  height: 100%;
+
+  .grid {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    color: #d9480f;
+    background-color: #ffd8a800;
+    border: 1px solid #ffffff59;
+  }
+}

@@ -1,0 +1,33 @@
+.recognize-container {
+  width: 100%;
+  height: 100%;
+  padding: 10px;
+
+  img {
+    width: 100%;
+  }
+
+  .result-wrap {
+    width: calc(100% - 20px);
+    margin: 20px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    font-size: 20px;
+    line-height: 30px;
+    text-align: center;
+    word-wrap: break-word;
+    word-break: break-word;
+    overflow-wrap: break-word;
+  }
+
+  .text-rect-wrap {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+  }
+}
+
+.text-rect-container {
+  position: absolute;
+  border: 1px solid;
+}
