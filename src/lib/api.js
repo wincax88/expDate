@@ -61,6 +61,5 @@ const recognize = imageData => {
     headers: getReqHeader(),
   }
   return post(config.hostUrl, { image: imageData }, options)
-
 }
 export { editWebideCode, getFileData, recognize }
