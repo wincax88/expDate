@@ -14,5 +14,11 @@
     "node_modules": true,
     "npm-debug.log.*": true,
     "yarn.lock": true
-  }
+  },
+  "appService.zipIgnorePattern": [
+    "node_modules{,/**}",
+    ".vscode{,/**}"
+  ],
+  "appService.defaultWebAppToDeploy": "/subscriptions/4f717d70-284e-4421-ab26-0e73a0b90bb5/resourceGroups/expDate/providers/Microsoft.Web/sites/expDate",
+  "appService.deploySubpath": "."
 }

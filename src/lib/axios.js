@@ -1,26 +1,28 @@
 import axios from 'axios'
 import { initCountly, catchEvent } from './countly'
+// import fetch from 'unfetch'
+const request = require('request')
 
 const querystring = require('querystring')
 
 // 初始化Countly
 initCountly()
 
-axios.defaults.timeout = 3e3
+axios.defaults.timeout = 30000
 axios.defaults.headers.common['retry'] = 3
 axios.defaults.headers.common['retryDelay'] = 1000
 
-axios.interceptors.request.use(
-  config => {
-    // // // console.log('axios.request', config)
-    return config
-  },
-  err => {
-    // console.error('axios.request', err)
-    catchEvent('http_error', err.message)
-    return Promise.reject(err)
-  }
-)
+// axios.interceptors.request.use(
+//   config => {
+//     // // // console.log('axios.request', config)
+//     return config
+//   },
+//   err => {
+//     // console.error('axios.request', err)
+//     catchEvent('http_error', err.message)
+//     return Promise.reject(err)
+//   }
+// )
 
 axios.interceptors.response.use(
   response => {
@@ -106,6 +108,57 @@ export function post(url, params, config) {
         if (err) return reject(err.msg || err.message || '未知错误')
       }
     )
+  })
+}
+export function fetchEx(url, params, config) {
+  console.log('config', config)
+  return new Promise((resolve, reject) => {
+    request
+      .post({
+        url: url,
+        headers: config,
+        form: querystring.stringify(params),
+      })
+      // axios
+      //   .request({
+      //     url: url,
+      //     method: 'post',
+      //     data: querystring.stringify(params),
+      //     headers: config,
+      //     withCredentials: false,
+      //   })
+      .on(
+        'response',
+        function(response) {
+          // .then(
+          // response => {
+          const data = response.data
+          if (
+            data.status === 200 ||
+            data.status === '200' ||
+            data.state === 200 ||
+            data.state === '200' ||
+            data.status === 1 ||
+            data.status === '1' ||
+            data.success === 1 ||
+            data.code === 200 ||
+            response.status === 200
+          ) {
+            return resolve(data)
+          } else {
+            console.error('post : ', url, response)
+            return reject(data.msg || data.message || '未知错误')
+          }
+        },
+        err => {
+          console.error('post : ', url, err)
+          if (err) return reject(err.msg || err.message || '未知错误')
+        }
+      )
+      .on('error', function(err) {
+        console.error('post : ', url, err)
+        if (err) return reject(err.msg || err.message || '未知错误')
+      })
   })
 }
 

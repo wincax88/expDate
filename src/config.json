@@ -1,3 +1,4 @@
 {
-  "cdnPath": "./"
+  "cdnPath": "./",
+  "host": "https://node-js-getting-started-demo.herokuapp.com"
 }

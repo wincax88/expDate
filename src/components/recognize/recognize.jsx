@@ -32,6 +32,7 @@ class RecognizeResult extends Component {
         reader.onloadend = function() {
           // var base64data = reader.result.toString('base64')
           var base64data = reader.result.replace('data:image/jpeg;base64,', '')
+          // var base64data = reader.result
           recognize(base64data)
             .then(res => {
               if (res.data && res.data.document && res.data.document.blocks) {
